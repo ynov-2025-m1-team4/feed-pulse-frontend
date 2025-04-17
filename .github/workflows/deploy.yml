@@ -1,14 +1,11 @@
 name: Deploy to Render
 
 on:
-  workflow_run:
-    workflows: ["Next.js CI"]
-    types:
-      - completed
+  push:
+    branches: [main]
 
 jobs:
   deploy:
-    if: ${{ github.event.workflow_run.conclusion == 'success' && github.ref == 'refs/heads/main'}}
     runs-on: ubuntu-latest
 
     steps:
