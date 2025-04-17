@@ -6,7 +6,9 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "setup:git-hooks": "git config core.hooksPath .git-hooks",
+    "postinstall": "npm run setup:git-hooks"
   },
   "dependencies": {
     "react": "^19.0.0",
