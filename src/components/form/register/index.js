@@ -15,6 +15,18 @@ const initialState = {
 
 const Page = () => {
   const [state, formAction, pending] = useActionState(register, initialState);
+  const [show, setShow] = useState(true);
+
+  useEffect(() => {
+    if (state?.message) {
+      setShow(true);
+    }
+  }, [state]);
+
+  const handleClose = () => {
+    setShow(false);
+  };
+
   return (
     <>
       <BootStrapt />
@@ -38,12 +50,35 @@ const Page = () => {
               label={pending ? "Enregistrement..." : "Register"}
               type="submit"
             />
-           
-          </form>
-          {state?.message && <Notification message={state.message} type={state.success ? "success" : "error"} />}
+            <div
+              className={`${style.btnDe} ${
+                state?.success ? style.success : style.error
+              }`}
+            >
+              {state?.message && show && (
+                <Notification
+                  message={state.message}
+                  type={state.success ? "success" : "error"}
+                  visible={show}
+                />
+              )}
+              {state?.message && show && (
+                <button
+                  type="button"
+                  className="btn-close"
+                  aria-label="Close"
+                  onClick={handleClose}
+                >
+                  X
+                </button>
+              )}
+            </div>
+
             <p className="my__10">
-                Vous n&apos;avez pas de compte ? <Link href="/auth/register">Inscrivez-vous</Link>
+              Vous n&apos;avez pas de compte ?{" "}
+              <Link href="/auth/register">Inscrivez-vous</Link>
             </p>
+          </form>
         </div>
       </div>
     </>

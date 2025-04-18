@@ -1,11 +1,7 @@
 .wrapper {
     padding: 9px;
     margin: 9px 0px;
-    &.btnDe{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-    }
+    
     &.error {
         background: red;
         color: white;
