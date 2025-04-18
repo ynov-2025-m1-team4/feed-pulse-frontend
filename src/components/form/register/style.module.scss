@@ -1,0 +1,26 @@
+.parent {
+    display: flex;
+    justify-content: center;
+    width: 120%;
+    .sous_parent{
+      width: 100%;
+    
+      .formHeader{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 1.5rem;
+        font-weight: bolder;
+        h1{
+            margin: 0.1rem 0;
+        }
+      }
+      input{
+          height: 3rem;
+          border: 1px solid #000000;
+          margin-bottom: 1rem;
+        }
+    }
+    
+  }
+  
