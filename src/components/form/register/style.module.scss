@@ -3,7 +3,7 @@
   justify-content: center;
   width: 120%;
   .sous_parent {
-    width: 100%;
+    width: 70%;
 
     .formHeader {
       display: flex;
@@ -11,14 +11,12 @@
       align-items: center;
       font-size: 1.5rem;
       font-weight: bolder;
-      h1 {
-        margin: 0.1rem 0;
-      }
+     
     }
     input {
       height: 3rem;
       border: 1px solid #000000;
-      margin-bottom: 1rem;
+      margin-bottom: 0.5rem;
     }
     .btnDe {
       margin: 1rem 0;
@@ -34,6 +32,9 @@
         background: green;
         color: white;
       }
+    }
+    .link{
+      font-weight: bold;
     }
   }
 }

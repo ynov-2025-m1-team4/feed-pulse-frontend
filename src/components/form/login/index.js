@@ -1,7 +1,7 @@
 "use client";
 
 import { useActionState, useEffect, useState } from "react";
-import { register } from "../../../app/action/auth";
+import { login } from "../../../app/action/auth";
 import Input from "../../input";
 import Button from "../../button/index";
 import style from "./style.module.scss";
@@ -14,8 +14,9 @@ const initialState = {
 };
 
 const Page = () => {
-  const [state, formAction, pending] = useActionState(register, initialState);
+  const [state, formAction, pending] = useActionState(login, initialState);
   const [show, setShow] = useState(true);
+console.log(state.error);
 
   useEffect(() => {
     if (state?.message) {
@@ -29,36 +30,31 @@ const Page = () => {
 
   return (
     <>
+
       <BootStrapt />
       <div className={style.parent}>
         <div className={style.sous_parent}>
           <div className={style.formHeader}>
             <h1>FEED PULSE</h1>
-            <h1>Register</h1>
+            <h1>Connexion</h1>
           </div>
 
           <form action={formAction}>
-            <Input label="Nom" type="text" name="name" />
             <Input label="Email" type="email" name="email" />
             <Input label="Password" type="password" name="password" />
-            <Input
-              label="Confirm Password"
-              type="password"
-              name="confirm_password"
-            />
             <Button
-              label={pending ? "Enregistrement..." : "Register"}
+              label={pending ? "Enregistrement..." : "Connexion"}
               type="submit"
             />
             <div
               className={`${style.btnDe} ${
-                state?.success ? style.success : style.error
+                state?.error ?  style.error: style.success
               }`}
             >
               {state?.message && show && (
                 <Notification
                   message={state.message}
-                  type={state.success ? "success" : "error"}
+                  type={state.error ? "error":"success" }
                   visible={show}
                 />
               )}
@@ -76,7 +72,9 @@ const Page = () => {
 
             <p className="my__10">
               Vous n&apos;avez pas de compte ?{" "}
-              <Link href="/auth/login" className={style.link}>Connectez-vous</Link>
+              <Link href="/auth/register" className={style.link}>
+                Inscrivez-vous
+              </Link>
             </p>
           </form>
         </div>
