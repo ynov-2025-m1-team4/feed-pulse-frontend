@@ -1,6 +1,5 @@
 "use server";
 
-
 export const register = async (start, formData) => {
   const name = formData.get("name");
   const email = formData.get("email");

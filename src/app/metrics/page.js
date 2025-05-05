@@ -56,7 +56,6 @@ const GraphComponent = () => {
         });
       }
     });
-
     const chartData = {
       labels: ["Red", "Blue", "Yellow"],
       datasets: [
