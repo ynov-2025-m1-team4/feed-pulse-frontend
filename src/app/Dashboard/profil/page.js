@@ -1,37 +1,22 @@
 "use client";
 
-import Image from 'next/image';
-import React from 'react';
+import { useEffect,useState } from "react";
+import ProfilCompo from "../../../components/profilCompo/index"
+import { getUser } from "../../action/auth";
 
 export default function Profile() {
+  const [currentUser, setCurrentUsers] = useState([]);
+    useEffect(()=>{
+         getUser()
+        .then((response) => {
+          console.log("user data4:", response.user);
+          setCurrentUsers(response.user);
+        })
+        .catch((error) => {
+          console.error("Error fetching event data:", error);
+        });
+    },[])
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 p-6">
-            <div className="w-full max-w-md flex flex-col items-center">
-
-                <div className="w-32 h-32 bg-gray-200 rounded-full flex items-center justify-center mb-6">
-                    <div className="w-32 h-32 bg-gray-200 rounded-full overflow-hidden mb-6">
-                        <Image
-                            src="/zoro.jpeg"
-                            width={50}
-                            height={50}
-                            alt="Profile picture"
-                            className="w-full h-full object-cover"
-                        />
-                    </div>
-                </div>
-
-                <h1 className="text-3xl font-normal text-black mb-8"> Username</h1>
-
-                <div className="w-full mb-4">
-                    <div className="w-full bg-gray-200 p-4 mb-4">
-                        <p className="text-xl text-black">username</p>
-                    </div>
-
-                    <div className="w-full bg-gray-200 p-4">
-                        <p className="text-xl text-black">...@gamil.com</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+       <ProfilCompo userName={currentUser?.pseudo} email={currentUser?.email} />
     );
 }

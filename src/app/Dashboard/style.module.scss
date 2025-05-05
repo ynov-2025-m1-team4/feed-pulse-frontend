@@ -1,0 +1,14 @@
+.parent {
+  width: 100%;
+  .parentNone {
+    position: relative;
+    display: flex;
+    justify-content: center;
+
+    height: auto;
+    p {
+      font-size: 25px;
+      font-weight: bold;
+    }
+  }
+}
