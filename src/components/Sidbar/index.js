@@ -3,19 +3,12 @@
 import Link from "next/link";
 import Button from "../../components/button/index";
 import { logout } from "../../app/action/auth";
-import { useActionState,useEffect } from "react";
 import { usePathname } from "next/navigation";
-
-const initialState = {
-  message: "",
-};
 
 export default function SimpleFeedPulseDashboard() {
   const pathname = usePathname();
 
-  const [state, formAction, pending] = useActionState(logout, initialState);
   useEffect(() => {
-    console.log(state);
     
     import("bootstrap/dist/js/bootstrap.bundle.min.js");
     console.log("URL actuelle :", pathname);
