@@ -1,7 +1,7 @@
 "use client";
 
+import Image from 'next/image';
 import React from 'react';
-import { UserCircle } from 'lucide-react';
 
 export default function Profile() {
     return (
@@ -10,8 +10,10 @@ export default function Profile() {
 
                 <div className="w-32 h-32 bg-gray-200 rounded-full flex items-center justify-center mb-6">
                     <div className="w-32 h-32 bg-gray-200 rounded-full overflow-hidden mb-6">
-                        <img
+                        <Image
                             src="/zoro.jpeg"
+                            width={50}
+                            height={50}
                             alt="Profile picture"
                             className="w-full h-full object-cover"
                         />

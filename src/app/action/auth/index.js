@@ -1,6 +1,5 @@
 "use server";
 
-import { error } from "console";
 
 export const register = async (start, formData) => {
   const name = formData.get("name");
