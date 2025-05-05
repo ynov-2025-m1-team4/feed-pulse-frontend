@@ -259,7 +259,7 @@ const GraphComponent = () => {
                 <div className={styles.Card}>
                   <p>{daily} %</p>
                 </div>
-                <h1>Daily Rate</h1>
+                <h1>Daily Rate </h1>
               </div>
             ) : (
               ""
