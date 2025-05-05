@@ -26,7 +26,7 @@ export default function SimpleFeedPulseDashboard() {
       
       <div className="flex flex-1">
         
-        <aside className="w-48 bg-white shadow-md">
+        {/* <aside className="w-48 bg-white shadow-md">
           <nav className="py-6">
             <ul className="space-y-2">
               <li>
@@ -52,7 +52,7 @@ export default function SimpleFeedPulseDashboard() {
             </ul>
           </nav>
         </aside>
-        
+         */}
         
       </div>
     </div>

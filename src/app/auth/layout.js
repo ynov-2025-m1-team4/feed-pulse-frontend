@@ -10,7 +10,7 @@ export default function AuthLayout({ children }) {
         <div className={styles.wrapper}>
           <div className={styles.main}>
             <div className={styles.image}>
-              <Image src="/logo.webp" alt="Image" />
+              <Image src="/logo.webp" fill alt="Image" />
             </div>
             <div className={styles.form}>{children}</div>
           </div>
