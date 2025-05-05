@@ -1,0 +1,40 @@
+.parent {
+  display: flex;
+  justify-content: center;
+  width: 120%;
+  .sous_parent {
+    width: 70%;
+
+    .formHeader {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 1.5rem;
+      font-weight: bolder;
+     
+    }
+    input {
+      height: 3rem;
+      border: 1px solid #000000;
+      margin-bottom: 0.5rem;
+    }
+    .btnDe {
+      margin: 1rem 0;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 0 1rem ;
+      &.error {
+        background: red;
+        color: white;
+      }
+      &.success {
+        background: green;
+        color: white;
+      }
+    }
+    .link{
+      font-weight: bold;
+    }
+  }
+}
