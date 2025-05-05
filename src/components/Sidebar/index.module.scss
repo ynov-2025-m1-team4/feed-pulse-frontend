@@ -1,0 +1,35 @@
+.sidebar {
+    width: 300px;
+    padding: 30px;
+    .sidebar__bottom {
+        margin-top: 60px;
+    }
+    h1 {
+        font-family: Geist;
+        font-weight: 800;
+        font-size: 35px;
+        line-height: 150%;
+        vertical-align: middle;
+        color: #2D3748;
+    }
+}
+
+.logout {
+    display: flex;
+    justify-content: center;
+    background-color: black;
+    color: white;
+    gap: 8px;
+    padding: 10px;
+    margin-left: 18px;
+    font-size: 10px;
+    font-weight: 700;
+    border-radius: 5px;
+    &:hover {
+        background: white;
+    }
+}
+
+.nav {
+    padding: 18px;
+}

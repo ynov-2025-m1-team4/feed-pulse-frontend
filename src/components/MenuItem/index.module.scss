@@ -1,0 +1,15 @@
+.wrapper {
+    list-style: none;
+    margin-bottom: 18px;
+    a {
+        display: flex;
+        gap: 18px;
+        font-size: 12px;
+        font-weight: 700;
+        border-radius: 5px;
+        color: #2D3748;
+        &:hover {
+            background: white;
+        }
+    }
+}

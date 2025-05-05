@@ -1,0 +1,45 @@
+.wrapper {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    grid-template-rows: 65px;
+    grid-template-areas: 
+        "side head"
+        "side lists";
+    .main {
+        width: 100%;
+        padding: 20px;
+        padding-top: 60px;
+    }
+}
+
+.head {
+    grid-area: head;
+    padding: 40px;
+}
+
+.side {
+    grid-area: side;
+}
+
+.lists {
+    display: flex;
+    grid-area: lists;
+}
+
+.select {
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 150%;
+    letter-spacing: 10%;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.littleTitle {
+    font-family: Geist;
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 150%;
+    letter-spacing: 10%;
+    vertical-align: middle;
+}
