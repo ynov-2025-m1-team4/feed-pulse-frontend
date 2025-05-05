@@ -1,9 +1,10 @@
+import { redirect } from "next/navigation";
+export default async function Home() {
 
-export default function Home() {
+  redirect("/auth/register");
+
   return (
     <>
-    <h1>Le Dashboard</h1>
     </>
-   
   );
 }
