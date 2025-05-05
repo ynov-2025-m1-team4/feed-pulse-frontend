@@ -1,0 +1,28 @@
+.wrapper {
+    display: flex;
+    .main {
+      width: 100%;
+      display: flex;
+    }
+    .image {
+      overflow: hidden;
+      width: 85%;
+      height: 98.5vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img{
+        width: 100%;
+        background-size: cover;
+      }
+      
+      
+    }
+    .form {
+      width: 70%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  
