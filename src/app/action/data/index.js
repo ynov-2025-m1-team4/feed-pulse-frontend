@@ -1,7 +1,5 @@
 "use server";
 
-import { error } from "console";
-
 export const addData = async (start, formData) => {
 
   const data = formData.get("data");

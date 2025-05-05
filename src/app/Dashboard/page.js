@@ -40,7 +40,7 @@ export default function SimpleFeedPulseDashboard() {
                 </Link>
               </li>
               <li>
-                <Link href="" className="block px-6 py-3 text-gray-700 hover:bg-gray-100">
+                <Link href="/profil" className="block px-6 py-3 text-gray-700 hover:bg-gray-100">
                   Profil
                 </Link>
               </li>
