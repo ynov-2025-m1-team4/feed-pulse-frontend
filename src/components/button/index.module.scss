@@ -1,0 +1,46 @@
+.btn {
+    display: inline-block;
+    padding: 12px 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+    border: none;
+    &WithIcon {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    &Primary {
+      width: 185px;
+      height: 40px;
+      background-color: black;
+      color: white;
+      font-size: 15px;
+      border-radius: 5px;
+  
+      svg {
+        fill: white;
+      }
+      &:hover {
+        background: white;
+        color: black;
+        border: 1px solid black;
+        font-weight: bold;
+        path {
+          fill: black;
+          // background-color: black;
+        }
+      }
+    }
+    &detaille {
+      border-radius: 5px;
+      border: 2px solid black;
+      background: white !important;
+      justify-content: center;
+      align-items: center;
+      & svg {
+        margin-left: 1rem;
+      }
+    }
+  }
+  
