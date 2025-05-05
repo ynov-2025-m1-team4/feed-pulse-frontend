@@ -1,0 +1,12 @@
+.parent {
+    display: flex;
+    .modal{
+        width: 100%;
+        padding: 1rem;
+        .modalBtn{
+            width: 100%;
+            text-align: right;
+            padding: 1rem;
+        }
+    }
+}
