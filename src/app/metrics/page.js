@@ -5,11 +5,29 @@ import { useRef, useEffect } from "react";
 import styles from "./style.module.scss";
 
 const GraphComponent = () => {
-  const chartCommentRefs = [useRef(null)];
-  const chartRefs = [useRef(null)];
-  const TitredataRefs = [useRef(null)];
+  const chartCommentRefs = [useRef(null)]; // Ajoutez autant de références que nécessaire
+  const chartRefs = [useRef(null)]; // Ajoutez autant de références que nécessaire
+  const TitredataRefs = [useRef(null)]; // Ajoutez autant de références que nécessaire
 
   useEffect(() => {
+
+    // Détruisez les instances précédentes
+    chartRefs.forEach((ref) => {
+      if (ref.current && ref.current.chart) {
+        ref.current.chart.destroy();
+      }
+    });
+    chartCommentRefs.forEach((ref) => {
+      if (ref.current && ref.current.chart) {
+        ref.current.chart.destroy();
+      }
+    });
+    TitredataRefs.forEach((ref) => {
+      if (ref.current && ref.current.chart) {
+        ref.current.chart.destroy();
+      }
+    });
+
     const chartCommentData = {
       labels: ["Red", "Blue", "Yellow"],
       datasets: [
@@ -28,7 +46,7 @@ const GraphComponent = () => {
 
     chartCommentRefs.forEach((ref) => {
       if (ref.current) {
-        new Chart(ref.current, {
+        ref.current.chart = new Chart(ref.current, {
           type: "doughnut",
           data: chartCommentData,
           options: {
@@ -38,6 +56,7 @@ const GraphComponent = () => {
         });
       }
     });
+
     const chartData = {
       labels: ["Red", "Blue", "Yellow"],
       datasets: [
@@ -56,7 +75,7 @@ const GraphComponent = () => {
 
     chartRefs.forEach((ref) => {
       if (ref.current) {
-        new Chart(ref.current, {
+        ref.current.chart = new Chart(ref.current, {
           type: "bar",
           data: chartData,
           options: {
@@ -66,6 +85,7 @@ const GraphComponent = () => {
         });
       }
     });
+
     const Titredata = {
       labels: ["Red", "Blue", "Yellow"],
       datasets: [
@@ -81,9 +101,10 @@ const GraphComponent = () => {
         },
       ],
     };
+
     TitredataRefs.forEach((ref) => {
       if (ref.current) {
-        new Chart(ref.current, {
+        ref.current.chart = new Chart(ref.current, {
           type: "bar",
           data: Titredata,
           options: {
@@ -93,6 +114,25 @@ const GraphComponent = () => {
         });
       }
     });
+
+    // Nettoyez les instances des graphiques lorsque le composant est démonté
+    return () => {
+      chartRefs.forEach((ref) => {
+        if (ref.current && ref.current.chart) {
+          ref.current.chart.destroy();
+        }
+      });
+      chartCommentRefs.forEach((ref) => {
+        if (ref.current && ref.current.chart) {
+          ref.current.chart.destroy();
+        }
+      });
+      TitredataRefs.forEach((ref) => {
+        if (ref.current && ref.current.chart) {
+          ref.current.chart.destroy();
+        }
+      });
+    };
   }, []);
 
   return (

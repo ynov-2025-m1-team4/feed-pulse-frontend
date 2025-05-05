@@ -1,6 +1,5 @@
 "use server";
 
-import { error } from "console";
 
 export const addData = async (start, formData) => {
 

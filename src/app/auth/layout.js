@@ -1,5 +1,6 @@
 // app/auth/layout.js
 // import "../../style/globals.scss";
+import Image from "next/image";
 import styles from "./layout.module.scss";
 
 export default function AuthLayout({ children }) {
@@ -9,7 +10,7 @@ export default function AuthLayout({ children }) {
         <div className={styles.wrapper}>
           <div className={styles.main}>
             <div className={styles.image}>
-              <img src="/logo.webp" alt="Image" />
+              <Image src="/logo.webp" alt="Image" />
             </div>
             <div className={styles.form}>{children}</div>
           </div>
