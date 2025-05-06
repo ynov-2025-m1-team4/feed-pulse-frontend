@@ -1,13 +1,13 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { getProviders } from "../action/dashbord";
+import { getFeed } from "../action/dashbord";
 import styles from "./style.module.scss"
 
 export default function SimpleFeedPulseDashboard() {
   const [providers,setProvider]=useState([])
   useEffect(()=>{
-    getProviders()
+    getFeed()
           .then((response) => {
             console.log("user data4:", response.provider);
             setProvider(response.provider);
