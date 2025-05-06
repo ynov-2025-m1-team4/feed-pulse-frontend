@@ -267,7 +267,7 @@ const GraphComponent = () => {
             {corve !== null ? (
               <div>
                 <div className={styles.Card}>
-                  <p>{corve.toFixed(2)} %</p>
+                  <p>{corve&&corve.toFixed(2)} %</p>
                 </div>
                 <h1>Sentiment Score</h1>
               </div>

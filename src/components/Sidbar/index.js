@@ -4,10 +4,10 @@ import Link from "next/link";
 import Button from "../../components/button/index";
 import { logout } from "../../app/action/auth";
 import { usePathname } from "next/navigation";
+import { useEffect } from "react";
 
 export default function SimpleFeedPulseDashboard() {
   const pathname = usePathname();
-
   useEffect(() => {
     
     import("bootstrap/dist/js/bootstrap.bundle.min.js");
@@ -56,7 +56,7 @@ export default function SimpleFeedPulseDashboard() {
                 <form action={logout}>
                   <Button
                     className="block px-6 py-3 bg-gray-800 text-white"
-                    label={pending ? "LOGOUT..." : "LOGOUT"}
+                    label={"LOGOUT"}
                     type="submit"
                   />
                 </form>
