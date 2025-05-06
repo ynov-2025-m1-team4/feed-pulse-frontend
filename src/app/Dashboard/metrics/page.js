@@ -217,7 +217,7 @@ const GraphComponent = () => {
         }
       });
     };
-  }, [metrics, theme, daily, sentiment, corve, critRate]);
+  }, [metrics, theme, daily, sentiment, corve, critRate, chartRefs, chartCommentRefs, TitredataRefs]);
 
   return (
     <>
