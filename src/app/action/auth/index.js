@@ -1,6 +1,7 @@
 "use server";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
+
 export const register = async (start, formData) => {
   const cookieStore = await cookies();
   const pseudo = formData.get("name");
@@ -124,7 +125,7 @@ export const login = async (start, formData) => {
     console.log("data: ", data);
 
     let res = await data.json();
-    console.log("le resutat",res.accessToken);
+    console.log("le resutat", res.accessToken);
 
     if (res.error) {
       return {
@@ -165,27 +166,28 @@ export const logout = async () => {
 
 export const getUser = async () => {
   const cookieStore = await cookies();
-  const token = cookieStore.get('token')
+  const token = cookieStore.get("token");
   console.log("token: ", token);
   if (!token) {
-    return null
+    return null;
   }
   try {
-    let data = await fetch("https://feed-pulse-backend.onrender.com/api/users/me", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${token.value}`,
-      },
-    });
-  
-    
-  
+    let data = await fetch(
+      "https://feed-pulse-backend.onrender.com/api/users/me",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token.value}`,
+        },
+      }
+    );
+
     let res = await data.json();
     console.log("resUser: ", res);
-    
+
     if (res.error) {
-      return null
+      return null;
     } else {
       return {
         error: false,
@@ -195,7 +197,6 @@ export const getUser = async () => {
     }
   } catch (error) {
     console.log("error: ", error);
-    return null
+    return null;
   }
-
-}
+};
