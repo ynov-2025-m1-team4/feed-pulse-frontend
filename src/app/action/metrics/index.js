@@ -12,10 +12,10 @@ export const getMetricsChane = async () => {
   try {
     let data = await fetch("https://feed-pulse-backend.onrender.com/api/metrics/channels", {
       method: "GET",
-      // headers: {
-      //   "Content-Type": "application/json",
-      //   "Authorization": `Bearer ${token.value}`,
-      // },
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token.value}`,
+      },
     });
   
     
