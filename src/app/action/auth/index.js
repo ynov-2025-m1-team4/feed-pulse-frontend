@@ -1,6 +1,8 @@
 "use server";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
+import * as Sentry from "@sentry/nextjs";
+
 
 export const register = async (start, formData) => {
   const cookieStore = await cookies();
@@ -61,7 +63,7 @@ export const register = async (start, formData) => {
       }
     );
 
-    console.log("data: ", data);
+    console.log("data: ", data.body);
 
     let res = await data.json();
     console.log(res);
@@ -165,6 +167,10 @@ export const logout = async () => {
 };
 
 export const getUser = async () => {
+  const transaction = Sentry.startTransaction({
+    name: "Fetch Feedbacks",
+    op: "http.client",
+  });
   const cookieStore = await cookies();
   const token = cookieStore.get("token");
   console.log("token: ", token);
@@ -177,6 +183,7 @@ export const getUser = async () => {
       {
         method: "GET",
         headers: {
+          "Sentry-Trace": transaction,
           "Content-Type": "application/json",
           Authorization: `Bearer ${token.value}`,
         },
@@ -187,6 +194,7 @@ export const getUser = async () => {
     console.log("resUser: ", res);
 
     if (res.error) {
+      Sentry.captureException(res.error)
       return null;
     } else {
       return {
