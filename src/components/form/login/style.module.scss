@@ -3,7 +3,7 @@
     justify-content: center;
     width: 100%;
     .sous_parent {
-      width: 40%;
+      width: 60%;
   
       .formHeader {
         display: flex;
@@ -24,6 +24,8 @@
         flex-direction: row;
         justify-content: space-between;
         padding: 0 1rem ;
+      width: 60%;
+
         &.error {
           background: red;
           color: white;

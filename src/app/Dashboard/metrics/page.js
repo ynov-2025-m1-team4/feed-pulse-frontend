@@ -257,7 +257,7 @@ const GraphComponent = () => {
               }
             >
               <div className={styles.Card}>
-                {critRate ? <p>{critRate.toFixed(2)} %</p> : ""}
+                <p>{critRate.toFixed(2)} %</p>
               </div>
               <h1>Feed Critique</h1>
             </div>
