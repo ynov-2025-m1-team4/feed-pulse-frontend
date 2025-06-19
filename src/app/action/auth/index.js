@@ -143,7 +143,7 @@ export const login = async (start, formData) => {
       });
       return {
         error: false,
-        message: "Registration successful",
+        message: "Login successful",
         redirect: "/",
       };
     }

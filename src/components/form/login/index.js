@@ -68,7 +68,6 @@ console.log(state.error);
                   aria-label="Close"
                   onClick={handleClose}
                 >
-                  X
                 </button>
               )}
             </div>

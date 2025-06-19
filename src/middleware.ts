@@ -18,7 +18,7 @@ export async function middleware(request: NextRequest) {
       return false;
     }
   };
-console.log("les isTokenValid est ", await isTokenValid(""));
+console.log("les isTokenValid est ", await isTokenValid("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NTQxZmQxZTA0OTNmMjE0MTE1Y2I0OCIsImVtYWlsIjoiam9uYXNkZXBlOTZAZ21haWwuY29tIiwiaWF0IjoxNzUwMzQzNjMzLCJleHAiOjE3NTA0MzAwMzN9.sibN_BuqUlPpMiLYs9b9t6Am9mkexJVtz1dH1fNq8Y4"));
 
 
   // Si l'utilisateur est connecté et essaie d'accéder à une route publique
@@ -27,6 +27,7 @@ console.log("les isTokenValid est ", await isTokenValid(""));
     (await isTokenValid(token)) &&
     PUBLIC_ROUTES.includes(url.pathname)
   ) {
+    console.log("je suis ici");    
     return NextResponse.redirect(new URL("/Dashboard", request.url));
   }
 
