@@ -173,7 +173,6 @@ export const getUser = async () => {
   });
   const cookieStore = await cookies();
   const token = cookieStore.get("token");
-  console.log("token: ", token);
   if (!token) {
     return null;
   }
