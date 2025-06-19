@@ -11,6 +11,7 @@ import {
 } from "../../action/metrics";
 
 const GraphComponent = () => {
+
   const chartCommentRefs = [useRef(null)];
   const chartRefs = [useRef(null)];
   const TitredataRefs = [useRef(null)];
@@ -47,9 +48,8 @@ const GraphComponent = () => {
       setLoading(false);
     }
   };
-  
+
   useEffect(() => {
-    
     loadAllData();
   }, []);
 
@@ -77,18 +77,16 @@ const GraphComponent = () => {
     const feedThemSentiment = [];
     const average_scorevaleur = [];
 
-    Object.entries(sentiment).forEach(([key,value]) => {
-      
+    Object.entries(sentiment).forEach(([key, value]) => {
       if (typeof value === "object" && value !== null) {
         Object.entries(value).forEach(([subKey, subValue]) => {
           distribution.push(subKey);
           feedThemSentiment.push(subValue);
-        console.log(key);
-
+          console.log(key);
         });
       } else {
-        console.log("la valeur en else est",value);
-        
+        console.log("la valeur en else est", value);
+
         average_scorevaleur.push(value);
       }
     });
@@ -98,7 +96,6 @@ const GraphComponent = () => {
       setCritique(average_scorevaleur[1]);
     }
 
-    
     destroyCharts();
 
     const commonOptions = {
@@ -178,7 +175,6 @@ const GraphComponent = () => {
     if (!loading && sentiment) createCharts();
 
     return destroyCharts;
-
   }, [metrics, theme, sentiment, loading, createCharts, destroyCharts]);
 
   const handleRefresh = () => loadAllData();
@@ -188,6 +184,14 @@ const GraphComponent = () => {
       <div className={styles.loadingContainer}>
         <div className={styles.spinner}></div>
         <p>Chargement des données...</p>
+      </div>
+    );
+  }
+  if (metrics.length <= 0) {
+    return (
+      <div className={styles.loadingContainer}>
+        <div className={styles.spinner}></div>
+        <p>Vous n&apos;avez pas de données </p>
       </div>
     );
   }
@@ -249,7 +253,7 @@ const GraphComponent = () => {
           {critRate !== null && (
             <div
               className={
-                critRate >= 0 ?styles.critiqueCardMieux: styles.critiqueCard
+                critRate >= 0 ? styles.critiqueCardMieux : styles.critiqueCard
               }
             >
               <div className={styles.Card}>
