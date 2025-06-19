@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import Chart from "chart.js/auto";
@@ -132,7 +133,7 @@ const GraphComponent = () => {
         }
       });
     };
-  }, []);
+  }, [TitredataRefs, chartCommentRefs, chartRefs]);
 
   return (
     <>
