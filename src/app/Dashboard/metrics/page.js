@@ -1,261 +1,211 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import Chart from "chart.js/auto";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 import styles from "./style.module.scss";
-import {
-  getMetricsChane,
-  getMetricsDailyRate,
-  getMetricsSentiment,
-  getMetricsTheme,
-} from "../../action/metrics";
 
 const GraphComponent = () => {
-  const chartCommentRefs = [useRef(null)];
-  const chartRefs = [useRef(null)];
-  const TitredataRefs = [useRef(null)];
-
-  const [metrics, setMetrics] = useState([]);
-  const [theme, setTheme] = useState([]);
-  const [daily, setDaily] = useState(null);
-  const [sentiment, setSentiment] = useState(null);
-  const [corve, setCorv] = useState(null);
-  const [critRate, setCritique] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  // Fonction de chargement
-  const loadAllData = async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const [metricsRes, themeRes, dailyRes, sentimentRes] = await Promise.all([
-        getMetricsChane(),
-        getMetricsTheme(),
-        getMetricsDailyRate(),
-        getMetricsSentiment(),
-      ]);
-
-      setMetrics(metricsRes.metrics || []);
-      setTheme(themeRes.metrics || []);
-      setDaily(dailyRes.metrics);
-      setSentiment(sentimentRes.metrics || {});
-    } catch (err) {
-      console.error("Erreur de chargement :", err);
-      setError("Échec du chargement des données.");
-    } finally {
-      setLoading(false);
-    }
-  };
+  const chartCommentRefs = [useRef(null)]; // Ajoutez autant de références que nécessaire
+  const chartRefs = [useRef(null)]; // Ajoutez autant de références que nécessaire
+  const TitredataRefs = [useRef(null)]; // Ajoutez autant de références que nécessaire
 
   useEffect(() => {
-    loadAllData();
-  }, []);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const destroyCharts = useCallback(() => {
-    [...chartRefs, ...chartCommentRefs, ...TitredataRefs].forEach((ref) => {
-      if (ref.current?.chart) {
+    // Détruisez les instances précédentes
+    chartRefs.forEach((ref) => {
+      if (ref.current && ref.current.chart) {
         ref.current.chart.destroy();
-        ref.current.chart = null;
       }
     });
-  });
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const createCharts = () => {
-    if (!sentiment) return;
-
-    const channels = metrics.map((m) => m.channel);
-    const feedbacksCounts = metrics.map((m) => m.feedbacks_count);
-
-    const themes = theme.map((t) => t.theme);
-    const feedThemCounts = theme.map((t) => t.feedbacks_count);
-
-    const distribution = [];
-    const feedThemSentiment = [];
-    const average_scorevaleur = [];
-
-    Object.entries(sentiment).forEach(([value]) => {
-      if (typeof value === "object" && value !== null) {
-        Object.entries(value).forEach(([subKey, subValue]) => {
-          distribution.push(subKey);
-          feedThemSentiment.push(subValue);
-        });
-      } else {
-        average_scorevaleur.push(value);
+    chartCommentRefs.forEach((ref) => {
+      if (ref.current && ref.current.chart) {
+        ref.current.chart.destroy();
+      }
+    });
+    TitredataRefs.forEach((ref) => {
+      if (ref.current && ref.current.chart) {
+        ref.current.chart.destroy();
       }
     });
 
-    if (average_scorevaleur.length > 0) {
-      setCorv(average_scorevaleur[0]);
-      setCritique(average_scorevaleur[1]);
-    }
-
-    destroyCharts();
-
-    const commonOptions = {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: { legend: { position: "top" } },
+    const chartCommentData = {
+      labels: ["Red", "Blue", "Yellow"],
+      datasets: [
+        {
+          label: "Theme distribution",
+          data: [300, 50, 100],
+          backgroundColor: [
+            "rgb(255, 99, 132)",
+            "rgb(54, 162, 235)",
+            "rgb(255, 205, 86)",
+          ],
+          hoverOffset: 4,
+        },
+      ],
     };
 
-    if (channels.length && chartRefs[0].current) {
-      chartRefs[0].current.chart = new Chart(chartRefs[0].current, {
-        type: "bar",
-        data: {
-          labels: channels,
-          datasets: [
-            {
-              label: "Distribution des canaux",
-              data: feedbacksCounts,
-              backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0"],
-            },
-          ],
-        },
-        options: {
-          ...commonOptions,
-          scales: { y: { beginAtZero: true } },
-        },
-      });
-    }
-
-    if (themes.length && TitredataRefs[0].current) {
-      TitredataRefs[0].current.chart = new Chart(TitredataRefs[0].current, {
-        type: "bar",
-        data: {
-          labels: themes,
-          datasets: [
-            {
-              label: "Distribution des thèmes",
-              data: feedThemCounts,
-              backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#9966FF"],
-            },
-          ],
-        },
-        options: {
-          ...commonOptions,
-          scales: { y: { beginAtZero: true } },
-        },
-      });
-    }
-
-    if (distribution.length && chartCommentRefs[0].current) {
-      chartCommentRefs[0].current.chart = new Chart(
-        chartCommentRefs[0].current,
-        {
-          type: "pie",
-          data: {
-            labels: distribution,
-            datasets: [
-              {
-                label: "Sentiments",
-                data: feedThemSentiment,
-                backgroundColor: [
-                  "#FF6384",
-                  "#36A2EB",
-                  "#FFCE56",
-                  "#4BC0C0",
-                  "#9966FF",
-                ],
-              },
-            ],
+    chartCommentRefs.forEach((ref) => {
+      if (ref.current) {
+        ref.current.chart = new Chart(ref.current, {
+          type: "doughnut",
+          data: chartCommentData,
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
           },
-          options: commonOptions,
+        });
+      }
+    });
+    const chartData = {
+      labels: ["Red", "Blue", "Yellow"],
+      datasets: [
+        {
+          label: "Theme distribution",
+          data: [300, 50, 100],
+          backgroundColor: [
+            "rgb(255, 99, 132)",
+            "rgb(54, 162, 235)",
+            "rgb(255, 205, 86)",
+          ],
+          hoverOffset: 4,
+        },
+      ],
+    };
+
+    chartRefs.forEach((ref) => {
+      if (ref.current) {
+        ref.current.chart = new Chart(ref.current, {
+          type: "bar",
+          data: chartData,
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+          },
+        });
+      }
+    });
+
+    const Titredata = {
+      labels: ["Red", "Blue", "Yellow"],
+      datasets: [
+        {
+          label: "Theme distribution",
+          data: [300, 50, 100],
+          backgroundColor: [
+            "rgb(255, 99, 132)",
+            "rgb(54, 162, 235)",
+            "rgb(255, 205, 86)",
+          ],
+          hoverOffset: 4,
+        },
+      ],
+    };
+
+    TitredataRefs.forEach((ref) => {
+      if (ref.current) {
+        ref.current.chart = new Chart(ref.current, {
+          type: "bar",
+          data: Titredata,
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+          },
+        });
+      }
+    });
+
+    // Nettoyez les instances des graphiques lorsque le composant est démonté
+    return () => {
+      chartRefs.forEach((ref) => {
+        if (ref.current && ref.current.chart) {
+          ref.current.chart.destroy();
         }
-      );
-    }
-  };
-
-  useEffect(() => {
-    console.log("les metrics est ",metrics);
-    
-    if (!loading && sentiment) createCharts();
-    return destroyCharts;
-  }, [metrics, theme, sentiment, loading, createCharts, destroyCharts]);
-
-  const handleRefresh = () => loadAllData();
-
-  if (loading) {
-    return (
-      <div className={styles.loadingContainer}>
-        <div className={styles.spinner}></div>
-        <p>Chargement des données...</p>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className={styles.errorContainer}>
-        <p>{error}</p>
-        <button onClick={handleRefresh} className={styles.retryButton}>
-          Réessayer
-        </button>
-      </div>
-    );
-  }
+      });
+      chartCommentRefs.forEach((ref) => {
+        if (ref.current && ref.current.chart) {
+          ref.current.chart.destroy();
+        }
+      });
+      TitredataRefs.forEach((ref) => {
+        if (ref.current && ref.current.chart) {
+          ref.current.chart.destroy();
+        }
+      });
+    };
+  }, [TitredataRefs, chartCommentRefs, chartRefs]);
 
   return (
-    <div className={styles.chartParent}>
-      <div className={styles.chart}>
-        <div className={styles.chartFirst}>
-          {chartRefs.map((ref, index) => (
-            <div key={index} style={{ width: 300, height: 200 }}>
-              <canvas ref={ref}></canvas>
-            </div>
-          ))}
+    <>
+      <div className={styles.chartParent}>
+        <div className={styles.chart}>
+          <div className={styles.chartFirst}>
+            {chartRefs.map((ref, index) => (
+              <div
+                key={index}
+                style={{
+                  width: "300px", // Resize as needed
+                  height: "200px",
+                  marginBottom: "20px",
+                }}
+              >
+                <canvas ref={ref}></canvas>
+              </div>
+            ))}
+          </div>
+          <div>
+            {TitredataRefs.map((ref, index) => (
+              <div
+                key={index}
+                style={{
+                  width: "300px", // Resize as needed
+                  height: "200px",
+                  marginBottom: "20px",
+                }}
+              >
+                <canvas ref={ref}></canvas>
+              </div>
+            ))}
+          </div>
         </div>
-        <div>
-          {TitredataRefs.map((ref, index) => (
-            <div key={index} style={{ width: 300, height: 200 }}>
-              <canvas ref={ref}></canvas>
-            </div>
-          ))}
-        </div>
-      </div>
-      <div className={styles.chart}>
-        <div className={styles.chartScond}>
-          {daily !== null && (
+        <div className={`${styles.chart}`}>
+          <div className={styles.chartScond}>
             <div>
               <div className={styles.Card}>
-                <p>{daily} %</p>
+                <p>6.8 %</p>
               </div>
               <h1>Daily Rate</h1>
             </div>
-          )}
-          {corve !== null && (
             <div>
               <div className={styles.Card}>
-                <p>{corve.toFixed(2)} %</p>
+                <p>6.8 %</p>
               </div>
               <h1>Sentiment Score</h1>
             </div>
-          )}
-          {critRate !== null && (
-            <div
-              className={
-                critRate >= 0
-                  ? styles.critiqueCard
-                  : styles.critiqueCardMieux
-              }
-            >
+            <div className={styles.critiqueCard}>
               <div className={styles.Card}>
-                <p>{critRate} %</p>
+                <p>6%</p>
               </div>
               <h1>Feed Critique</h1>
             </div>
-          )}
-        </div>
-        <div>
-          {chartCommentRefs.map((ref, index) => (
-            <div key={index} style={{ width: 300, height: 200 }}>
-              <canvas ref={ref}></canvas>
-            </div>
-          ))}
+          </div>
+          <div>
+            {chartCommentRefs.map((ref, index) => (
+              <div
+                key={index}
+                style={{
+                  width: "300px", // Resize as needed
+                  height: "200px",
+                  marginBottom: "20px",
+                }}
+              >
+                <canvas ref={ref}></canvas>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
