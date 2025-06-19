@@ -63,7 +63,7 @@ export const register = async (start, formData) => {
       }
     );
 
-    console.log("data: ", data);
+    console.log("data: ", data.body);
 
     let res = await data.json();
     console.log(res);
