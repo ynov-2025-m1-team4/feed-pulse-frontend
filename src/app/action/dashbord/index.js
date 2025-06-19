@@ -10,7 +10,7 @@ export const getFeed= async () => {
     return null
   }
   try {
-    let data = await fetch("https://feed-pulse-backend.onrender.com/api/feedbacks", {
+    let data = await fetch("https://feed-pulse-backend.onrender.com/api/feedbacks/user", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
