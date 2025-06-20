@@ -6,7 +6,6 @@ import Input from "../../input";
 import Button from "../../button/index";
 import style from "./style.module.scss";
 import Notification from "../../popUp/index";
-import BootStrapt from "../../Bootstrap/BootstrapClient";
 import Link from "next/link";
 
 const initialState = {
@@ -19,6 +18,7 @@ const Page = () => {
 console.log(state.error);
 
   useEffect(() => {
+    console.log(`les message de login,${state?.message}, erreur ${state?.error}, redirection ${state.redirect}`);
     if (!state?.error && state.redirect) {
       window.location.href = state.redirect;
   }
@@ -34,7 +34,6 @@ console.log(state.error);
   return (
     <>
 
-      <BootStrapt />
       <div className={style.parent}>
         <div className={style.sous_parent}>
           <div className={style.formHeader}>
@@ -68,6 +67,7 @@ console.log(state.error);
                   aria-label="Close"
                   onClick={handleClose}
                 >
+                  X
                 </button>
               )}
             </div>

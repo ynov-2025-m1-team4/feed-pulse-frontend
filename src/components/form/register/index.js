@@ -18,6 +18,8 @@ const Page = () => {
   const [show, setShow] = useState(true);
 
   useEffect(() => {
+    console.log(`les message de register,${state?.message}, erreur ${state?.error}, redirection ${state.redirect}`);
+
     if (state?.message) {
        if (!state?.error && state.redirect) {
       window.location.href = state.redirect;
@@ -72,7 +74,7 @@ const Page = () => {
                   aria-label="Close"
                   onClick={handleClose}
                 >
-                  {" "}
+                  X
                 </button>
               )}
             </div>
