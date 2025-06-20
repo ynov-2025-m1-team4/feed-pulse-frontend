@@ -19,7 +19,7 @@ const Page = () => {
 console.log(state.error);
 
   useEffect(() => {
-    if (!state?.error && state.redirect) {
+    if (state?.error && state.redirect) {
       window.location.href = state.redirect;
   }
     if (state?.message) {
