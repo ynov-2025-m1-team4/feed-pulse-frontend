@@ -64,7 +64,7 @@ const Page = () => {
                   aria-label="Close"
                   onClick={handleClose}
                 >
-                  
+                  X
                 </button>
               )}
             </div>
