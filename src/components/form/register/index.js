@@ -19,6 +19,9 @@ const Page = () => {
 
   useEffect(() => {
     if (state?.message) {
+       if (!state?.error && state.redirect) {
+      window.location.href = state.redirect;
+  }
       setShow(true);
     }
   }, [state]);
@@ -52,13 +55,13 @@ const Page = () => {
             />
             <div
               className={`${style.btnDe} ${
-                state?.success ? style.success : style.error
+                state?.error ? style.error : style.success
               }`}
             >
               {state?.message && show && (
                 <Notification
                   message={state.message}
-                  type={state.success ? "success" : "error"}
+                  type={state.error ? "error" : "success"}
                   visible={show}
                 />
               )}
@@ -69,14 +72,16 @@ const Page = () => {
                   aria-label="Close"
                   onClick={handleClose}
                 >
-                  X
+                  {" "}
                 </button>
               )}
             </div>
 
             <p className="my__10">
               Vous n&apos;avez pas de compte ?{" "}
-              <Link href="/auth/login" className={style.link}>Connectez-vous</Link>
+              <Link href="/auth/login" className={style.link}>
+                Connectez-vous
+              </Link>
             </p>
           </form>
         </div>

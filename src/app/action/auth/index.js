@@ -143,7 +143,7 @@ export const login = async (start, formData) => {
       });
       return {
         error: false,
-        message: "Registration successful",
+        message: "Login successful",
         redirect: "/",
       };
     }
@@ -173,7 +173,6 @@ export const getUser = async () => {
   });
   const cookieStore = await cookies();
   const token = cookieStore.get("token");
-  console.log("token: ", token);
   if (!token) {
     return null;
   }

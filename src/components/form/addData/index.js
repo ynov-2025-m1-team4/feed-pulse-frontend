@@ -18,6 +18,9 @@ const Page = () => {
 
   useEffect(() => {
     if (state?.message) {
+       if (!state?.error && state.redirect) {
+      window.location.href = state.redirect;
+    }
       setShow(true);
     }
   }, [state]);

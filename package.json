@@ -10,7 +10,8 @@
     "setup:git-hooks": "git config core.hooksPath .git-hooks",
     "postinstall": "npm run setup:git-hooks",
     "prepare": "husky",
-    "pre-commit": "npm run lint"
+    "pre-commit": "npm run lint",
+    "test:perf": "k6 run --out json=results.json src/test/perfomance/test.js"
   },
   "dependencies": {
     "@sentry/nextjs": "^9.30.0",

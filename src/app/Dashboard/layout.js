@@ -1,10 +1,11 @@
 import SaidBar from "../../components/Sidbar";
 import DataForm from "../../components/form/addData";
 import styles from "./layout.module.scss";
-
+import BootStrapt from "../../components/Bootstrap/BootstrapClient";
 export default function Layout({ children }) {
     return (
         <>
+        <BootStrapt />
             <div className={styles.parent}>
                      <SaidBar />
                      <div className={styles.modal} >
