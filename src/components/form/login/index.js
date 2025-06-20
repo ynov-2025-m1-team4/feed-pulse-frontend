@@ -19,7 +19,8 @@ const Page = () => {
 console.log(state.error);
 
   useEffect(() => {
-    if (state?.error && state.redirect) {
+    console.log(`les message de login,${state?.message}, erreur ${state?.error}, redirection ${state.redirect}`);
+    if (!state?.error && state.redirect) {
       window.location.href = state.redirect;
   }
     if (state?.message) {

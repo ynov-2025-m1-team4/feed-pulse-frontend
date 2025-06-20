@@ -18,8 +18,10 @@ const Page = () => {
   const [show, setShow] = useState(true);
 
   useEffect(() => {
+    console.log(`les message de register,${state?.message}, erreur ${state?.error}, redirection ${state.redirect}`);
+
     if (state?.message) {
-       if (state?.error && state.redirect) {
+       if (!state?.error && state.redirect) {
       window.location.href = state.redirect;
   }
       setShow(true);

@@ -17,8 +17,10 @@ const Page = () => {
   console.log(state.error);
 
   useEffect(() => {
+    console.log(`les message de addData,${state?.message}, erreur ${state?.error}, redirection ${state.redirect}`);
+    
     if (state?.message) {
-       if (state?.error && state.redirect) {
+       if (!state?.error && state.redirect) {
       window.location.href = state.redirect;
     }
       setShow(true);
